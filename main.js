@@ -1,25 +1,50 @@
-/*
-    Define a function with a single parameter. When the function
-    is invoked, an argument is required.
-*/
-const hailTheQueen = (nameString) => {
-    return `Hail Her Majesty, ${nameString}.`  // This function returns a string
+const queens = [];
+const tributeChest = [];
+
+const createQueen = (num, nameStr) => {
+    const queen = {
+        id: num,
+        name: nameStr
+    }
+    queens.push(queen)
 }
 
-const charisse = hailTheQueen("Charisse Ford") // Argument value is "Charisse Ford"
-console.log(charisse)
+const hailTheQueen = (nameString) => {
+    return `Hail Her Majesty, ${nameString}.`
+}
 
-const jenna = hailTheQueen("Jenna Solis") // Argument value is "Jenna Solis"
-console.log(jenna)
+// Create some queens
+createQueen(1, "Trinity Terry");
+createQueen(2, "Leanna Profitt");
+createQueen(3, "Pamela Profitt");
 
-const athena = hailTheQueen("Athena Perez"); // Argument value is "Athena Perez"
-console.log(athena);
+// Hail all of the queens
+for (const queen of queens) {
 
-const leanna = hailTheQueen("Leanna Profitt") // Argument value is "Leanna Profitt"
-console.log(leanna)
+    const hailMessage = hailTheQueen(queen.name)  // What should be passed as an argument?
+    console.log(hailMessage)
 
-const pamela = hailTheQueen("Pamela Profitt") // Argument value is "Pamela Profitt"
-console.log(pamela)
+}
 
-const peggy = hailTheQueen("Peggy Lawrence") // Argument value is "Peggy Lawrence"
-console.log(peggy)
+// Pay tribute to the queens
+const payTribute = (tributeId, tributeDescription, queenNum) => {
+    const tribute = {
+        id: tributeId,
+        description: tributeDescription,
+        queenId: queenNum
+    };
+    
+    tributeChest.push(tribute);
+}
+
+payTribute(1, 'IOU', 1);
+payTribute(2, 'My unconditional love', 2);
+payTribute(3, 'An amazing Mother\'s Day gift', 3);
+
+for (const queen of queens) {
+    for (const tribute of tributeChest) {
+        if (queen.id == tribute.queenId) {
+            console.log(`${queen.name} has received a tribute of ${tribute.description}.`)
+        }
+    }
+}
